@@ -1,22 +1,24 @@
 <!--  -->
 <template>
-  <div>
-    <Swiper>
+  <div >
+    <Swiper class = "swiper">
         <!--  -->
-        <slide v-for = "item in banner"  v-bind:key="item.id">
-            <a :href = "item.link"><img :src = "item.image" alt="" @load = "imageLoad"></a>
+        <slide v-for = "topImage in topImages"  v-bind:key = "topImage.id">
+            <img :src = "topImage" alt="" @load="imageLoad">
         </slide>
     </Swiper>
   </div>
 </template>
 
 <script>
+
 import { Swiper,Slide} from 'components/common/swiper/index'
+
 export default {
-  name:'homeswiper',
+  name:'detailSwiper',
   props:{
-      banner: {
-          type: Array,
+      topImages:{
+          type:Array,
           default() {
               return []
           }
@@ -29,7 +31,8 @@ export default {
   },
 
   components: {
-      Swiper,Slide
+      Swiper,
+      Slide,
   },
 
   computed: {},
@@ -39,8 +42,8 @@ export default {
   methods: {
       imageLoad() {
           if(!this.isLoad) {
-              this.$emit("swiperImageLoad");
-              this.isLoad = true;
+            this.$emit("kol");
+            this.isLoad = true;
           }
       }
   }
@@ -48,4 +51,12 @@ export default {
 
 </script>
 <style scoped>
+    .swiper {
+        height: 240px;
+        overflow: hidden;
+    }
+
+    /* .swiper img {
+        height: 240px;
+    } */
 </style>

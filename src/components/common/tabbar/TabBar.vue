@@ -35,7 +35,7 @@ export default {
         bottom: 0;
         right: 0;
 
-        box-shadow:0 -4px 1px rgba(100, 100, 100, .1);
+        box-shadow:0 -4px 1px rgba(0, 0, 0, .3);
     }
 
 </style>

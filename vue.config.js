@@ -12,8 +12,8 @@ module.exports = {
     },
     devServer: {
 
-        public: '0.0.0.0:8080',
-
+        public: '218.192.169.33',
+        host: '218.192.169.33',
         hot: true,
 
         disableHostCheck: true,

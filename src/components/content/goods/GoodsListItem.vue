@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-  <div class="goods-list-item ">
-      <img :src = "goodsItem.show.img" alt="">
+  <div class="goods-list-item " @click = "itemClick">
+      <img v-lazy = "showImage" alt="" @load = "imageLoad">
       <div class="goods-info">
           <p>{{goodsItem.title}}</p>
           <span class="price">{{ goodsItem.price }}</span>
@@ -28,11 +28,32 @@ export default {
 
   components: {},
 
-  computed: {},
+  computed: {
+    //   计算属性：根据不同的图片获取后缀，获取不同的图片
+      showImage() {
+          return this.goodsItem.img||this.goodsItem.image||this.goodsItem.show.img
+      }
+  },
 
   mounted() {},
 
-  methods: {}
+  methods: {
+      imageLoad() {
+        //   console.log("图片被加载");
+          //使用路由来监听home/detail发出load事件, -1也是为真
+          if(this.$route.path.indexOf('/home') !== -1) {
+            //   console.log("home中的图片被加载");
+              this.$bus.$emit('itemImageLoad');
+          } else if(this.$route.path.indexOf('/detail')!==-1) {
+              this.$bus.$emit('detailItemImageLoad');
+          }
+      },
+      itemClick() {
+        //   动态路由传递参数
+        //  
+          this.$router.push('/detail/' + this.goodsItem.iid);
+      }
+  }
 }
 
 </script>
